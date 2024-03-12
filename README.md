@@ -1,5 +1,3 @@
-# mxSoundBox
-
 # mxSoundBox - Readme
 
 ## Table of Contents
