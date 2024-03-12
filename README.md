@@ -1,29 +1,59 @@
-# mxSoundBox - Readme
+# Basic Typescript Node starter project
 
-## Table of Contents
-1. [Project Setup](#project-setup)
-2. [Building for Android (APK)](#building-for-android--apk--)
-3. [Starting the Web App](#starting-the-web-app--)
+Just follow this tutorial: 
+https://www.learnwithjason.dev/blog/modern-node-server-typescript-2024
 
-## Project Setup
-First, make sure you have `node.js`, `yarn` and Expo CLI installed on your machine:
 
-1. Install `node.js` from <https://nodejs.org/en/download/>
-2. Install Yarn by running: `npm install -g yarn`
-3. Install Expo CLI by running: `npm install -g expo-cli`
-
-## Building for Android (APK)
-To build the APK using the preview profile, run the following command in your terminal or command prompt:
-
-```bash
-expo build -p android --profile preview
-````
-This will generate the APK file in the android/app/build/outputs/apk directory.
-
-## Starting the Web App
-To start the web app, run the following command in your terminal or command prompt:
-
-```bash
-npm run web
+## Set up the project:
 ```
-This command will initialize the development server and open the web app in your default web browser at <http://localhost:19002>.
+mkdir my-node-app
+cd my-node-app/
+git init
+npm init -y
+npm i -D typescript ts-node @types/node
+npx tsc --init
+```
+
+## Next, open package.json and add the following:
+```
+{
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "name": "my-node-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "node --env-file=.env --watch -r ts-node/register src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Lengstorf <jason@learnwithjason.dev>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
+```
+
+## Add environment variables, if needed create .env and put any secrets inside:
+```
+TEST_VALUE=hello
+```
+
+## Create the main Node app file, create src/index.ts and put something inside:
+```
+function test(): void {
+  console.log(process.env.TEST_VALUE);
+}
+
+test();
+```
+
+## Start the Node server and test live reload
+```
+npm run dev
+```
